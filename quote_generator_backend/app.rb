@@ -35,5 +35,5 @@ end
 delete '/quotes/:id' do
   content_type :json
   quote = Quote.find(params[:id])
-  quote
+  quote.destroy
 end
