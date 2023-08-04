@@ -10,7 +10,7 @@ end
 # API to get random quote
 get '/quotes/random' do
   content_type :json
-  quote = Quote.order('RANDOM()').first
+  quote = Quote.order('RANDOM()')
   quote.to_json
 end
 
