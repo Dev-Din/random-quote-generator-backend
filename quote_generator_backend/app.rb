@@ -19,7 +19,7 @@ post '/quotes' do
   content_type :json
   request_body = JSON.parse(request.body.read)
   quote = Quote.create(request_body)
-  quote
+  quote.to_json
 end
 
 # API to update quote
