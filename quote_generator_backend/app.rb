@@ -30,3 +30,10 @@ put '/quotes/:id' do
   quote.update(request_body)
   quote
 end
+
+# API to delete quote
+delete '/quotes/:id' do
+  content_type :json
+  quote = Quote.find(params[:id])
+  quote
+end
