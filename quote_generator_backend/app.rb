@@ -11,7 +11,7 @@ end
 get '/quotes/random' do
   content_type :json
   quote = Quote.order('RANDOM()').first
-  quote
+  quote.to_json
 end
 
 # API to create new quote
