@@ -1,41 +1,76 @@
 # Quote Generator Backend
 
-This is the backend for the Quote Generator application, which is built using Sinatra and ActiveRecord to handle API routes and manage the database.
+The Quote Generator Backend is a Sinatra application with ActiveRecord that provides API routes to handle CRUD operations on quotes. It is used in conjunction with the frontend to manage and store quotes in a database.
 
-## Prerequisites
+## Technologies Used
 
-Before running the backend, make sure you have the following installed:
-
-- Ruby (version 2.6.0 or higher)
-- Bundler (if not installed, run `gem install bundler`)
-- SQLite3 (for local development)
+- Ruby
+- Sinatra
+- ActiveRecord
+- SQLite
 
 ## Getting Started
 
-Follow the steps below to set up and run the backend:
+### Prerequisites
 
-1. Clone the repository to your local machine.
+- Ruby (version 2.6 or higher)
+
+### Installation
+
+1. Clone the repository to your local machine:
+
+   ```
+   git clone https://github.com/your-username/quote-generator.git
+   ```
 
 2. Navigate to the backend directory:
 
    ```
-   cd quote_generator_backend
+   cd quote-generator/backend
    ```
 
-3. Install the required gems:
+3. Install backend dependencies:
 
    ```
    bundle install
    ```
 
-4. Create the database and run the migration to set up the database schema:
+### Database Setup
+
+1. Create a db directory in the backend directory to store the database file.
+
+2. Run the following command to create the SQLite database and the quotes table:
 
    ```
    bundle exec rake db:create_migration NAME=create_quotes
+   ```
+
+3. This will generate a migration file in the `db/migrate` directory. Open the migration file and modify it as follows:
+
+   ```ruby
+   # db/migrate/XXXXXXXXXXXXXX_create_quotes.rb
+
+   class CreateQuotes < ActiveRecord::Migration[6.0]
+     def change
+       create_table :quotes do |t|
+         t.string :quote
+         t.string :author
+
+         t.timestamps
+       end
+     end
+   end
+   ```
+
+4. Run the migration to create the quotes table:
+
+   ```
    bundle exec rake db:migrate
    ```
 
-5. Start the Sinatra server:
+### Starting the Application
+
+1. Start the backend server:
 
    ```
    bundle exec rackup config.ru
@@ -43,25 +78,19 @@ Follow the steps below to set up and run the backend:
 
    The server will start running on `http://localhost:9292`.
 
-## API Endpoints
+## API Routes
 
-The backend provides the following API endpoints:
+- `GET /quotes/random`: Fetches a random quote from the database and returns it in JSON format.
 
-- `GET /quotes/random`: Fetches a random quote from the database.
+- `POST /quotes`: Creates a new quote in the database based on the request body.
 
-- `POST /quotes`: Creates a new quote. The request body should contain a JSON object with the keys `quote` and `author`.
+- `PUT /quotes/:id`: Updates an existing quote in the database based on the quote ID and request body.
 
-- `PUT /quotes/:id`: Updates an existing quote with the specified ID. The request body should contain a JSON object with the keys `quote` and `author`.
+- `DELETE /quotes/:id`: Deletes a quote from the database based on the quote ID.
 
-- `DELETE /quotes/:id`: Deletes the quote with the specified ID.
+## Deployment
 
-## Models
-
-The backend uses the `Quote` model to interact with the `quotes` table in the database. The `Quote` model is defined in the `app.rb` file.
-
-## Database
-
-The database is set up using SQLite3 and consists of a single table named `quotes`. The migration file to create this table is located in the `db/migrate` directory.
+To deploy the backend application to a production environment, consider deploying it on a platform like Heroku.
 
 ## Contributing
 
@@ -70,5 +99,3 @@ If you would like to contribute to the development of this project, feel free to
 ## Issues
 
 If you encounter any issues or bugs, please open an issue on the GitHub repository.
-
----
