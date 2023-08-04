@@ -22,3 +22,11 @@ post '/quotes' do
   quote
 end
 
+# API to update quote
+put '/quotes/:id' do
+  content_type :json
+  quote = Quote.find(params[:id])
+  request_body = JSON.parse(request.body.read)
+  quote.update(request_body)
+  quote
+end
