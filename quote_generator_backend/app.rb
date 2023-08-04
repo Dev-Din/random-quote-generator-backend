@@ -28,7 +28,7 @@ put '/quotes/:id' do
   quote = Quote.find(params[:id])
   request_body = JSON.parse(request.body.read)
   quote.update(request_body)
-  quote
+  quote.to_json
 end
 
 # API to delete quote
