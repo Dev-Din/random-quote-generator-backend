@@ -63,10 +63,6 @@ The backend uses the `Quote` model to interact with the `quotes` table in the da
 
 The database is set up using SQLite3 and consists of a single table named `quotes`. The migration file to create this table is located in the `db/migrate` directory.
 
-## Deployment
-
-To deploy the backend to a production environment, you can use a web server like Heroku. Make sure to set the appropriate environment variables and database configurations.
-
 ## Contributing
 
 If you would like to contribute to the development of this project, feel free to submit a pull request.
@@ -74,9 +70,5 @@ If you would like to contribute to the development of this project, feel free to
 ## Issues
 
 If you encounter any issues or bugs, please open an issue on the GitHub repository.
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
